@@ -29,3 +29,9 @@ export async function apiPut(url, data) {
     const result = await response.json();
     return result;
 }
+
+export async function apiDelete(url) {
+    await fetch(url, {
+        method: 'DELETE',
+    });
+}
