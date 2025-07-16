@@ -113,13 +113,33 @@ function PokemonList() {
                         </div>
                     ) : (
                         <ul>
-                            {data.pokemons.map((pokemon) => (
+                            {data.pokemons.map((pokemon, index) => (
                                 <li
                                     key={pokemon.name}
                                     onClick={() => setSelectedPokemon(pokemon.name)}
                                     style={{cursor: 'pointer'}}
                                     className="link-primary">
                                     {pokemon.name}
+                                    
+                                    <button
+                                        className="btn btn-sm btn-warning ms-2"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleUpdatePokemon(index + 1);
+                                        }}
+                                    >
+                                    Edit
+                                    </button>
+
+                                    <button
+                                        className="btn btn-sm btn-danger ms-1"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleDeletePokemon(index + 1);
+                                        }}
+                                    >
+                                    Delete
+                                    </button>
                                 </li>
                             ))}
                         </ul>
