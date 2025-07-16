@@ -7,3 +7,25 @@ export async function apiGet(url) {
     // Napokon JSON objekt, resp premennú data, v ktorej je uložený, vrátime
     return data;
 }
+
+export async function apiPost(url, data) {
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'}, 
+        body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+    return result;
+}
+
+export async function apiPut(url, data) {
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' }, 
+        body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+    return result;
+}
