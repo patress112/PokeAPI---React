@@ -76,6 +76,13 @@ function PokemonList() {
                 onClick={() => handleNavigationClick(data.nextUrl)}>
                 Next
             </button>
+            <button
+                type="button"
+                className="btn btn-success ms-2"
+                onClick={handleAddPokemon}
+            >
+            Add Pokemon - test
+            </button>
         </div>
         <div className="container-fluid">
             <div className="row">
