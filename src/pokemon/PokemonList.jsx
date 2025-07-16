@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from "react";
-import { apiGet, apiPost } from "../utils/api";
+import { apiDelete, apiGet, apiPost, apiPut } from "../utils/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import PokemonCard from "./PokemonCard";
 
@@ -42,6 +42,7 @@ function PokemonList() {
     setUrl(url);
     }
 
+    // Pridanie handleAddPokemon funkcie pre pridanie nového Pokémona 
     async function handleAddPokemon() {
         const newPokemon = {
             name: "Testachu",
@@ -51,6 +52,23 @@ function PokemonList() {
         const response = await apiPost('https://jsonplaceholder.typicode.com/posts', newPokemon);
 
         alert("Server response: \n\n " + JSON.stringify(response, null, 2));
+    }
+
+    // Pridanie handleUpdatePokemon(id) funkcie pre update Pokémona
+    async function handleUpdatePokemon(id) {
+        const updatedData = {
+            name: "Updatechu",
+            type: "Electric",
+        };
+        
+        const response = await apiPut(`https://jsonplaceholder.typicode.com/posts/${id}`, updatedData);
+        alert(`Server response (PUT ${id}):\n\n` + JSON.stringify(response, null, 2));
+    }
+
+    // Pridanie handleDeletePokemon(id) pre vymazanie pokémona
+    async function handleDeletePokemon(id) {
+    await apiDelete(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    alert(`Test Pokemon with ID ${id} has been deleted.`);
     }
 
     // Napokon vrátime ul zoznam
