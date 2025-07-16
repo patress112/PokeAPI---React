@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from "react";
-import { apiGet } from "../utils/api";
+import { apiGet, apiPost } from "../utils/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import PokemonCard from "./PokemonCard";
 
@@ -40,8 +40,18 @@ function PokemonList() {
     if (!url) return;
     // Inak cez setUrl nastavíme do url jej aktuálnu hodnotu z vlastnosti next / previous
     setUrl(url);
-}
+    }
 
+    async function handleAddPokemon() {
+        const newPokemon = {
+            name: "Testachu",
+            type: "Electric",
+        };
+
+        const response = await apiPost('https://jsonplaceholder.typicode.com/posts', newPokemon);
+
+        alert("Server response: \n\n " + JSON.stringify(response, null, 2));
+    }
 
     // Napokon vrátime ul zoznam
     /* 
